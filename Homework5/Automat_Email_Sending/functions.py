@@ -4,7 +4,7 @@ from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from datetime import datetime
-import smtplib,ssl
+import smtplib,ssl,os
 import csv
 from time import sleep
 from random import uniform
@@ -62,9 +62,10 @@ def save_to_log(logfile_path: Path, operation_result: dict, receiver_name: str, 
         receiver_name (str): name of receiver
         receiver_email (str): receiver email
     """
-    log_date = datetime.now().strftime("%d.%b.%Y")
-    with open(logfile_path, "w") as log:
-        log.write(log_date+"\n")
+    if not os.path.exists():
+        log_date = datetime.now().strftime("%d.%b.%Y")
+        with open(logfile_path, "w") as log:
+            log.write(log_date+"\n")
     
     logging.basicConfig(level = logging.INFO, filename = logfile_path)
     if not operation_result:
