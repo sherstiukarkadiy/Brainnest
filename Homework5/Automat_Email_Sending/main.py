@@ -11,6 +11,7 @@ pathes = {
     }
 
 schedule.every().day.at("19:00").do(send_message, date, pathes)
+send_message(date, pathes)
 
 while True:
     schedule.run_pending()

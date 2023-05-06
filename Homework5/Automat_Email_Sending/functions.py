@@ -62,7 +62,7 @@ def save_to_log(logfile_path: Path, operation_result: dict, receiver_name: str, 
         receiver_name (str): name of receiver
         receiver_email (str): receiver email
     """
-    if not os.path.exists():
+    if not os.path.exists(logfile_path):
         log_date = datetime.now().strftime("%d.%b.%Y")
         with open(logfile_path, "w") as log:
             log.write(log_date+"\n")
